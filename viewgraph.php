@@ -32,7 +32,7 @@ if(isset($_GET['duration'])) {
         <h2>View graph - <?php echo "$viewhost - $viewport - $viewtype" ?></h2>
             <?php
             connectToDB();
-            $result = pg_query('SELECT * FROM ports WHERE host="' . pg_escape_literal($viewhost). '" AND graphtype="' . pg_escape_literal($viewtype) . '" AND safename="' . pg_escape_literal($viewport) . '" ');
+            $result = pg_query('SELECT * FROM ports WHERE host=\'' . pg_escape_string($viewhost). '\' AND graphtype=\'' . pg_escape_string($viewtype) . '\' AND safename=\'' . pg_escape_string($viewport) . '\' ');
 
             if(pg_num_rows($result) > 0) {
                 $row = pg_fetch_assoc($result);

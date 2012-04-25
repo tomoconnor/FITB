@@ -27,7 +27,7 @@ if(isset($_GET['duration'])) {
         <h2>View port - <?php echo "$viewhost - $viewport" ?></h2>
             <?php
             connectToDB();
-            $result = pg_query('SELECT * FROM ports WHERE host="' . pg_escape_literal($viewhost). '" AND safename="' . pg_escape_literal($viewport) . '" ORDER BY lastpoll DESC, safename ASC');
+            $result = pg_query('SELECT * FROM ports WHERE host=\'' . pg_escape_string($viewhost). '\' AND safename=\'' . pg_escape_string($viewport) . '\' ORDER BY lastpoll DESC, safename ASC');
 
             if(pg_num_rows($result) > 0) {
 
