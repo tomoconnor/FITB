@@ -24,7 +24,7 @@ include_once('functions.php');
                 database</span></p>';
         } 
         if (!connectToDB()) {
-            echo '<p><span class="red">FITB is having trouble connecting to your database. Have you set up MySQL with the FITB database and specified 
+            echo '<p><span class="red">FITB is having trouble connecting to your database. Have you set up Postgresql with the FITB database and specified 
                 the correct connection parameters in config.php?</span></p>';
         }
 
