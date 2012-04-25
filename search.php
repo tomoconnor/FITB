@@ -40,15 +40,15 @@ if((isset($_GET['host'])) && ($_GET['host'] != "")) {
         ?>
             <?php
             connectToDB();
-            $searchquery = pg_escape_literal($searchquery);
+            $searchquery = pg_escape_string($searchquery);
 
             if (isset($host)) {
-                $host = pg_escape_literal($host);
-                $type = pg_escape_literal($type);
+                $host = pg_escape_string($host);
+                $type = pg_escape_string($type);
                 $result = pg_query('SELECT * FROM ports WHERE (name like "%' . $searchquery . '%" OR alias like "%' . $searchquery . '%") 
                                             AND graphtype like "%' . $type . '%" AND host="' . $host . '" ORDER BY lastpoll DESC, safename ASC');
             } elseif (isset($type)) {
-                $type = pg_escape_literal($type);
+                $type = pg_escape_string($type);
                 $result = pg_query('SELECT * FROM ports WHERE (name like "%' . $searchquery . '%" OR alias like "%' . $searchquery . '%") 
                                             AND graphtype="' . $type . '" ORDER BY lastpoll DESC, safename ASC');
             } else {

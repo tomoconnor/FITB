@@ -28,7 +28,7 @@ if(isset($_GET['duration'])) {
             <?php
             # Lets find some graphs! Connect to the database, select all the ports for this host, and this graphtype (Empty wildcard makes sure all graphs appear if none set)
             if (connectToDB()) {
-                $result = pg_query('SELECT * FROM ports WHERE host like "%' . pg_escape_literal($viewhost). '%" AND graphtype like "%' . pg_escape_literal($viewtype) . '%" ORDER BY lastpoll DESC, safename ASC');
+                $result = pg_query('SELECT * FROM ports WHERE host like \'%' . pg_escape_string($viewhost). '%\' AND graphtype like \'%' . pg_escape_string($viewtype) . '%\' ORDER BY lastpoll DESC, safename ASC');
 
                 if(pg_num_rows($result) > 0) {
 
