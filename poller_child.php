@@ -112,10 +112,10 @@ foreach($ifEntry as $intid => $thisint) {
             # Insert the details of this graph/port into the database for future reference
             connectToDB();
             # first, delete the previous row if it exists
-            pg_query('DELETE FROM ports where host="' . $pollprettyhost . '" AND safename="' . $thisint['name']. '" AND graphtype="' . $thisgraph . '"');
+            pg_query('DELETE FROM ports where host=\'' . $pollprettyhost . '\' AND safename=\'' . $thisint['name']. '\' AND graphtype=\'' . $thisgraph . '\'');
             # Now insert the values
             pg_query('INSERT INTO ports (host, name, safename, filename, alias, graphtype, lastpoll)
-                VALUES ("'.$pollprettyhost.'", "'.$thisint[2].'", "'.$thisint['name'].'", "'.$genrrdname.'", "'.$thisint['alias'].'", "'.$thisgraph.'", "'. $timestamp .'")');
+                VALUES (\''.$pollprettyhost.'\', \''.$thisint[2].'\', \''.$thisint['name'].'\', \''.$genrrdname.'\', \''.$thisint['alias'].'\', \''.$thisgraph.'\', \''. $timestamp .'\')');
 
             logline("{$pollprettyhost} - {$intname} - Done Updating database", 2, $verbose);
             logline("{$pollprettyhost} - {$intname} - Done loop for interface {$thisint['name']} and graph type {$thisgraph}", 2, $verbose);
