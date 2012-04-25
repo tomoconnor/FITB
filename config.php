@@ -8,8 +8,16 @@ $pollingenabled = true;
 # This is the list of hosts you want to poll every minute for data. 
 # 
 $pollhosts = array(
-    "yourswitchname" => array("prettyname" => "yourswitchname", "enabled" => true, "showoninterface" => true, "ip" => "yourswitchname.yourcompany.com", "snmpcommunity" => "public", "graphtypes" => array('bits','ucastpkts','errors')),
+#	"yourswitchname" => array("prettyname" => "yourswitchname", "enabled" => true, "showoninterface" => true, "ip" => "yourswitchname.yourcompany.com", "snmpcommunity" => "public", "graphtypes" => array('bits','ucastpkts','errors')),
     # more hosts go here
+	"core-1" => array (
+		"prettyname" => "core-1",
+		"enabled" => true,
+		"showoninterface" => true,
+		"ip" => gethostbyname("core-1.london.baseblack.com"),
+		"snmpcommunity" => "public",
+		"graphtypes" => array('bits','ucastpkts','errors')
+	);
 );
 
 # Verbosity. Choose your level of logging here. This affects everything that logs, which at the minute is
