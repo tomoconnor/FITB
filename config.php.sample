@@ -32,7 +32,7 @@ $mysql_db = "fitb";
 
 $pg_host= "localhost";
 $pg_user= "fitbuser";
-$pg_pass = "f1tbP4ss";
+$pg_pass = "f1tb";
 $pg_db = "fitb";
 
 

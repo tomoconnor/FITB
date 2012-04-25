@@ -31,6 +31,11 @@ Screenshots and a guide to FITB are available here: [http://www.flickr.com/photo
         mysql> create database fitb;
         mysql> grant all on fitb.* to fitbuser@localhost IDENTIFIED BY 'f1tbP4ss';
 
+	postgres@server:~$ createuser -U postgres -d -S -P -l -R fitb
+	Enter password for new role: f1tb
+	Enter it again: f1tb
+	postgres@charcoal-black:~$ createdb -U fitb fitb
+
 3. Load the database structure into your database:
 
         # mysql fitb < fitb.sql
