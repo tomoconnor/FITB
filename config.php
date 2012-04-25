@@ -17,7 +17,7 @@ $pollhosts = array(
 		"ip" => gethostbyname("core-1.london.baseblack.com"),
 		"snmpcommunity" => "public",
 		"graphtypes" => array('bits','ucastpkts','errors')
-	);
+	)
 );
 
 # Verbosity. Choose your level of logging here. This affects everything that logs, which at the minute is
