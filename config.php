@@ -31,10 +31,10 @@ $mysql_pass = "f1tbP4ss";
 $mysql_db = "fitb";
 
 $pg_host= "localhost";
-$pg_user= "fitbuser";
+$pg_user= "fitb";
 $pg_pass = "f1tb";
 $pg_db = "fitb";
-
+$pg_port = "5432";
 
 # Old age:
 # Mark graphs older than this many seconds as stale

@@ -197,8 +197,9 @@ function logline($message, $messverbose, $reqverbose) {
 
 function connectToDB() {
     global $mysql_host, $mysql_user, $mysql_pass, $mysql_db;
-    global $pg_host, $pg_user, $pg_pass, $pg_db;
+    global $pg_host, $pg_user, $pg_pass, $pg_db, $pg_port;
     if(function_exists("pg_connect")) {
+	echo "dbname=$pg_db host=$pg_host port=$pg_port user=$pg_user password=$pg_pass";
         if(!pg_connect("dbname=$pg_db host=$pg_host port=$pg_port user=$pg_user password=$pg_pass")) {
             return false;
         }
