@@ -65,6 +65,8 @@ foreach($ifEntry as $intid => $thisint) {
         # Sanitise the name
         $intname = str_replace("/", "-", $thisint[2]); 
         $intname = str_replace(" ", "-", $intname); 
+        $intname = str_replace("(", "", $intname); 
+        $intname = str_replace(")", "", $intname); 
         $intname = str_replace(":", "-", $intname); 
         $intname = str_replace('"', "", $intname); 
         $thisint['name'] = $intname;
