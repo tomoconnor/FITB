@@ -16,7 +16,7 @@ $pollhosts = array(
 		"showoninterface" => true,
 		"ip" => gethostbyname("core-1.london.baseblack.com"),
 		"snmpcommunity" => "public",
-		"graphtypes" => array('bits','ucastpkts','errors')
+		"graphtypes" => array('bits','ucastpkts','errors','bcastpkts')
 	)
 );
 
