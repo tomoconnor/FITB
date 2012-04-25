@@ -6,7 +6,9 @@ CREATE TABLE "ports" (
   "alias" text NOT NULL,
   "graphtype" varchar(255) NOT NULL,
   "lastpoll" integer NOT NULL,
-  PRIMARY KEY  ("filename"),
-  KEY "host_name" ("host"),
-  KEY "port_name" ("name")
+  PRIMARY KEY  ("filename")
 );
+
+create index host_name on ports using hash (host);
+create index port_name on ports using hash (name);
+
