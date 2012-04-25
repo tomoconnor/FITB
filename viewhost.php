@@ -28,11 +28,11 @@ if(isset($_GET['duration'])) {
             <?php
             # Lets find some graphs! Connect to the database, select all the ports for this host, and this graphtype (Empty wildcard makes sure all graphs appear if none set)
             if (connectToDB()) {
-                $result = mysql_query('SELECT * FROM ports WHERE host like "%' . mysql_real_escape_string($viewhost). '%" AND graphtype like "%' . mysql_real_escape_string($viewtype) . '%" ORDER BY lastpoll DESC, safename ASC');
+                $result = pg_query('SELECT * FROM ports WHERE host like "%' . pg_escape_literal($viewhost). '%" AND graphtype like "%' . pg_escape_literal($viewtype) . '%" ORDER BY lastpoll DESC, safename ASC');
 
-                if(mysql_num_rows($result) > 0) {
+                if(pg_num_rows($result) > 0) {
 
-                   while ($row = mysql_fetch_assoc($result)) {
+                   while ($row = pg_fetch_assoc($result)) {
                         $staletag = "";
                         if ((time() - $row['lastpoll']) > $staleage) {
                             $staletag = "STALE: ";

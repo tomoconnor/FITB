@@ -155,19 +155,19 @@ function purgeOld($loglevel) {
 
     connectToDB();
     $findold = "SELECT * FROM ports WHERE lastpoll < {$unixpurgeage}";
-    $results = mysql_query($findold);
+    $results = pg_query($findold);
 
-    $numresults = mysql_num_rows($results);
+    $numresults = pg_num_rows($results);
     if($numresults > 0) {
         logline("PURGER: Found {$numresults} candidate old RRDs/ports for deletion (older than " . _ago($unixpurgeage) . ")", 0, $loglevel);
-         while ($row = mysql_fetch_assoc($results)) {
+         while ($row = pg_fetch_assoc($results)) {
             logline("PURGER: Deleting '{$row['name']}' from host '{$row['host']}' and graphtype '{$row['graphtype']}' from the database", 2, $loglevel);
             $filetodelete = "{$path_rrd}{$row['host']}/{$row['host']}-{$row['safename']}_{$row['graphtype']}.rrd";
             logline("PURGER: Deleting '{$filetodelete}'. ", 2, $loglevel);
             unlink($filetodelete);
             logline("PURGER: Deleting row for '{$row['name']}' from the database", 2, $loglevel);
             $deleterow = 'DELETE FROM ports WHERE host="' . $row['host']. '" AND safename="'. $row['safename'] .'" AND graphtype="' . $row['graphtype']. '"';
-            mysql_query($deleterow);
+            pg_query($deleterow);
             logline("PURGER: Done deleting '{$row['name']}' ", 1, $loglevel);
          }
     } else {
@@ -197,16 +197,14 @@ function logline($message, $messverbose, $reqverbose) {
 
 function connectToDB() {
     global $mysql_host, $mysql_user, $mysql_pass, $mysql_db;
-    if(function_exists("mysql_connect")) {
-        if(!mysql_connect($mysql_host, $mysql_user, $mysql_pass)) {
-            return false;
-        }
-        if(!mysql_select_db($mysql_db)) {
+    global $pg_host, $pg_user, $pg_pass, $pg_db;
+    if(function_exists("pg_connect")) {
+        if(!pg_connect("dbname=$pg_db host=$pg_host port=$pg_port user=$pg_user password=$pg_pass")) {
             return false;
         }
         return true;
     } else {
-        echo "MySQL support is required";
+        echo "PostgreSQL support is required";
         return false;
     }
 }
@@ -254,8 +252,8 @@ function htmlLastPollerTime() {
 
 function htmlNumberOfGraphs() {
     if(connectToDB()) {
-        $results = mysql_query("SELECT COUNT(*) from ports;");
-        $ports = mysql_result($results, 0);
+        $results = pg_query("SELECT COUNT(*) from ports;");
+        $ports = pg_fetch_result($results, 0);
         echo "{$ports} graphs";
     } else {
         echo " Connect to database failed, are your MySQL details correct? ";
@@ -264,8 +262,8 @@ function htmlNumberOfGraphs() {
 
 function htmlNumberOfHosts() {
     if(connectToDB()) {
-        $results = mysql_query("SELECT COUNT(DISTINCT(host)) from ports;");
-        $hosts = mysql_result($results, 0);
+        $results = pg_query("SELECT COUNT(DISTINCT(host)) from ports;");
+        $hosts = pg_fetch_result($results, 0);
         echo "{$hosts} hosts";
     }
 }

@@ -19,8 +19,8 @@ include_once('functions.php');
         <p>FITB is a automatic, RRDTool based graphing product that leaves no port untouched.</p>
         <p>Select a host from the left.</p>
 <?php 
-        if (!function_exists("mysql_connect")) {
-            echo '<p><span class="red">It looks like you don\'t have PHP MySQL libraries installed. FITB will require these to connect to the
+        if (!function_exists("pg_connect")) {
+            echo '<p><span class="red">It looks like you don\'t have PHP PostgreSQL libraries installed. FITB will require these to connect to the
                 database</span></p>';
         } 
         if (!connectToDB()) {

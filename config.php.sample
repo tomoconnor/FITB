@@ -30,6 +30,12 @@ $mysql_user = "fitbuser";
 $mysql_pass = "f1tbP4ss";
 $mysql_db = "fitb";
 
+$pg_host= "localhost";
+$pg_user= "fitbuser";
+$pg_pass = "f1tbP4ss";
+$pg_db = "fitb";
+
+
 # Old age:
 # Mark graphs older than this many seconds as stale
 $staleage = 1800;
